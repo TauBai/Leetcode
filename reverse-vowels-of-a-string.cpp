@@ -22,7 +22,7 @@ string reverseVowels(string s) {
                }
             
         }
-        if(!iteratorbox.size())
+        if(!iteratorbox.empty())
         {
             auto itbegin = iteratorbox.begin();
             auto itend =   iteratorbox.end() ;
