@@ -1,14 +1,18 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-string reverseVowels(string s);
+/*
+ Write a function that takes a string as input and reverse only the vowels of a string.
 
-int main()
-{
-    string s ="helll";
-    cout << reverseVowels(s);
-}
-string reverseVowels(string s) {
+Example 1:
+Given s = "hello", return "holle".
+
+Example 2:
+Given s = "leetcode", return "leotcede".
+
+ */
+
+
+class Solution {
+public:
+    string reverseVowels(string s) {
         string::iterator iter = s.begin();
         string::iterator iterend = s.end();
         vector<string::iterator> iteratorbox;
@@ -17,7 +21,12 @@ string reverseVowels(string s) {
                (*iter) == 'e' ||
                (*iter) == 'i' ||
                (*iter) == 'o' ||
-               (*iter) == 'u'){
+               (*iter) == 'u' ||
+               (*iter) == 'A' ||
+               (*iter) == 'E' ||
+               (*iter) == 'I' ||
+               (*iter) == 'O' ||
+               (*iter) == 'U'){
                    iteratorbox.push_back(iter);
                }
             
@@ -36,3 +45,4 @@ string reverseVowels(string s) {
         }
         return s;
 }
+};
