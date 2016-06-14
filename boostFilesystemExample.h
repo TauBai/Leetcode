@@ -1,3 +1,21 @@
+#define BOOST_FILESYSTEM_VERSION 3
+
+//  As an example program, we don't want to use any deprecated features
+#ifndef BOOST_FILESYSTEM_NO_DEPRECATED
+#  define BOOST_FILESYSTEM_NO_DEPRECATED
+#endif
+#ifndef BOOST_SYSTEM_NO_DEPRECATED
+#  define BOOST_SYSTEM_NO_DEPRECATED
+#endif
+
+#include "boost/filesystem/operations.hpp"
+#include "boost/filesystem/path.hpp"
+#include "boost/progress.hpp"
+#include <iostream>
+
+namespace fs = boost::filesystem;
+
+const char* chars_folder_ ;
 bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& filename,
                                                    std::vector<std::string>& corfoldername){
     fs::path p(fs::current_path());
