@@ -1,3 +1,7 @@
+/* NOTE:  
+              LIBS +=   -lboost_filesystem -lboost_system
+*/
+
 #define BOOST_FILESYSTEM_VERSION 3
 
 //  As an example program, we don't want to use any deprecated features
