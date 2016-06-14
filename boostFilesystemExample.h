@@ -44,7 +44,7 @@ bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& fil
         for (fs::directory_iterator dir_itr(p);dir_itr != end_iter;++dir_itr){
             if (fs::is_directory(dir_itr->status())){
                 ++dir_count;
-                const std::string s = dir_itr->path().string();
+                const std::string s = dir_itr->path().string();   // get the folder's name 
                 std::cout << s << " [directory]\n";
                 fs::path subP = fs::system_complete(s);
                 if(fs::is_directory(subP)){
@@ -53,7 +53,7 @@ bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& fil
                                     dir_itr != end_iter;++dir_itr){
                         if(fs::is_regular_file(dir_itr->status())){
                             ++file_count;
-                            std::string sFileName = dir_itr->path().string();
+                            std::string sFileName = dir_itr->path().string();    // get the filename
                             std::cout << sFileName << "\n";
                             filename.push_back(sFileName);
                             corfoldername.push_back(s);
