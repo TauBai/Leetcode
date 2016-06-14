@@ -1,5 +1,8 @@
 /* NOTE:  
               LIBS +=   -lboost_filesystem -lboost_system
+              
+              http://www.boost.org/doc/libs/1_61_0/libs/filesystem/doc/reference.html#path-filename
+              http://www.boost.org/doc/libs/1_61_0/libs/filesystem/example/simple_ls.cpp
 */
 
 #define BOOST_FILESYSTEM_VERSION 3
