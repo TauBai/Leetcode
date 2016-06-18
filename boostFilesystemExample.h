@@ -24,7 +24,7 @@ namespace fs = boost::filesystem;
 
 const char* chars_folder_ ;
 bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& filename,
-                                                   std::vector<std::string>& corfoldername){
+                                                   std::vector<std::string>& corfoldername)
     fs::path p(fs::current_path());
     if (chars_folder_)
         p = fs::system_complete(chars_folder_);
@@ -46,10 +46,15 @@ bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& fil
         fs::directory_iterator end_iter;
         for (fs::directory_iterator dir_itr(p);dir_itr != end_iter;++dir_itr){
             if (fs::is_directory(dir_itr->status())){
-                ++dir_count;
-                const std::string s = dir_itr->path().string();   // get the folder's name 
+                std::string s = dir_itr->path().string();   // get the folder's path
+                size_t found = s.find_first_not_of(chars_folder_);
+                if (found != std::string::npos)
+                   s.erase(s.begin(),s.begin() + found);
+                 els
+                   s.erase(s.begin(),s.begin()+ sizeof(chars_folder_));  // get th folder's name
+
                 std::cout << s << " [directory]\n";
-                fs::path subP = fs::system_complete(s);
+                fs::path subP = fs::system_complete(dir_itr);
                 if(fs::is_directory(subP)){
                     fs::directory_iterator end_iter;
                     for(fs::directory_iterator dir_itr(subP);
@@ -69,6 +74,7 @@ bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& fil
                     ++other_count;
                     std::cout << dir_itr->path().filename() << " [other]\n";
                 }
+                ++dir_count;
             }
         }
         std::cout << "\n" << file_count << " files\n"
@@ -80,4 +86,15 @@ bool getSubDIRfilenames(const char* chars_folder_, std::vector<std::string>& fil
         std::cout << "\nFound: " << p << "\n";
         return 0;
     }
+}
+void saveFolderName(std::vector<std::string> foldername, const std::string s = chars_folder_){
+    std::ofstream fstrm(s + "foldername.txt", std::ofstream::out);
+    if (!fstrm){
+        std::cout << s <<" cannot be opened" << std::endl;
+        return;
+    }
+    for(auto a : foldername)
+        fstrm << "'" << a << "'" << ',';
+    fstrm.close();
+
 }
