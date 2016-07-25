@@ -41,3 +41,26 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////
+
+//hashtable 
+// if no major element found, it returns one appears most
+
+class Solution3 {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int, int> counts; 
+        int n = nums.size();
+        for (int i = 0; i < n; i++)
+            if (++counts[nums[i]] > n / 2)
+                return nums[i];
+        int val;
+        int maxct = 0;
+        for(int i = 0; i < n ; ++i){
+            if(counts[nums[i]] > maxct){
+                maxct = counts[nums[i]];
+                val = nums[i];
+            }
+        }
+        return val;
+    }
+};
